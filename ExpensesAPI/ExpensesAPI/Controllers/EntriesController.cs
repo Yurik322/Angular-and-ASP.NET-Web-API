@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using ExpensesAPI.Data;
+using ExpensesAPI.Models;
 
 namespace ExpensesAPI.Controllers
 {
@@ -26,6 +27,32 @@ namespace ExpensesAPI.Controllers
             {
                 return BadRequest(ex.Message);
             }
+
+        }
+
+        [HttpPost]
+        public IHttpActionResult PostEntry([FromBody] Entry entry)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                using (var context = new AppDbContext())
+                {
+                    context.Entries.Add(entry);
+                    context.SaveChanges();
+
+                    return Ok("Entry was created!");
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
         }
     }
 }
