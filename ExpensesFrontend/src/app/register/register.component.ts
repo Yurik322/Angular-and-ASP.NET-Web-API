@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AuthService} from "../auth.service";
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,9 @@ export class RegisterComponent {
 
   registerForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private service: AuthService) {
+
     this.registerForm = fb.group({
       userName: ['', Validators.required],
       password: ['', Validators.required],
@@ -20,6 +23,12 @@ export class RegisterComponent {
 
   onSubmit() {
     console.log(this.registerForm.value);
+    delete this.registerForm.value.confirmPassword;
+    this.service.register(this.registerForm.value).subscribe((data:any) => {
+      console.log(data);
+      localStorage.setItem('userName', data.UserName);
+      localStorage.setItem('token_value', data.Token);
+    })
   }
 }
 

@@ -24,11 +24,15 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatListModule } from "@angular/material/list";
 
-// forms
-import { ReactiveFormsModule } from "@angular/forms";
+// components
 import { UpdateEntryComponent } from './update-entry/update-entry.component';
 import { DeleteEntryComponent } from './delete-entry/delete-entry.component';
 import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+
+// forms
+import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -39,7 +43,8 @@ import { RegisterComponent } from './register/register.component';
     NewEntryComponent,
     UpdateEntryComponent,
     DeleteEntryComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +61,8 @@ import { RegisterComponent } from './register/register.component';
     MatDialogModule,
     MatListModule,
 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   entryComponents: [UpdateEntryComponent],
   providers: [EntryService, AuthService],

@@ -8,6 +8,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using ExpensesAPI.Data;
 using ExpensesAPI.Models;
 using Microsoft.IdentityModel.Tokens;
 
@@ -21,14 +22,54 @@ namespace ExpensesAPI.Controllers
         [HttpPost]
         public IHttpActionResult Login([FromBody] User user)
         {
-            return null;
+            if (string.IsNullOrEmpty(user.UserName) || string.IsNullOrEmpty(user.Password))
+            {
+                return BadRequest("Enter Your username and password");
+            }
+
+            try
+            {
+                using (var context = new AppDbContext())
+                {
+                    var exists = context.Users.Any(n => n.UserName == user.UserName && n.Password == user.Password);
+                    if (exists)
+                    {
+                        return Ok(CreateToken(user));
+                    }
+
+                    return BadRequest("Wrong credentials");
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [Route("register")]
         [HttpPost]
         public IHttpActionResult Register([FromBody] User user)
         {
-            return null;
+            try
+            {
+                using (var context = new AppDbContext())
+                {
+                    var exists = context.Users.Any(n => n.UserName == user.UserName);
+                    if (exists)
+                    {
+                        return BadRequest("User already exists");
+                    }
+
+                    context.Users.Add(user);
+                    context.SaveChanges();
+
+                    return Ok(CreateToken(user));
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         private JwtPackage CreateToken(User user)
@@ -40,7 +81,7 @@ namespace ExpensesAPI.Controllers
                 new Claim(ClaimTypes.Email, user.UserName)
             });
 
-            const string secretKey = "322";
+            const string secretKey = "this is my secret key";
             var securityKey = new SymmetricSecurityKey(Encoding.Default.GetBytes(secretKey));
             var signinCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
 
