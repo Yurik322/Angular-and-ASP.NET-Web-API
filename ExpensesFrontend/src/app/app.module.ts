@@ -23,6 +23,9 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatListModule } from "@angular/material/list";
+import { MatSortModule } from "@angular/material/sort";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatIconModule } from "@angular/material/icon";
 
 // components
 import { UpdateEntryComponent } from './update-entry/update-entry.component';
@@ -60,6 +63,9 @@ import { FormsModule } from "@angular/forms";
     MatToolbarModule,
     MatDialogModule,
     MatListModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatIconModule,
 
     ReactiveFormsModule,
     FormsModule
