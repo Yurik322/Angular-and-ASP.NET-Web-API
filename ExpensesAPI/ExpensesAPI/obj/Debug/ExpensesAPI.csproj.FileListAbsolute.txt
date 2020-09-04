@@ -92,3 +92,4 @@ E:\MY PROGRAMS\Projects\C#\Angular and ASP.NET Web API\ExpensesAPI\ExpensesAPI\o
 E:\MY PROGRAMS\Projects\C#\Angular and ASP.NET Web API\ExpensesAPI\ExpensesAPI\bin\System.Web.Cors.dll
 E:\MY PROGRAMS\Projects\C#\Angular and ASP.NET Web API\ExpensesAPI\ExpensesAPI\bin\System.Web.Http.Cors.dll
 E:\MY PROGRAMS\Projects\C#\Angular and ASP.NET Web API\ExpensesAPI\ExpensesAPI\bin\System.Web.Http.Cors.xml
+E:\MY PROGRAMS\Projects\C#\Angular and ASP.NET Web API\ExpensesAPI\ExpensesAPI\obj\Debug\ExpensesAPI.Migrations.UserAdded.resources
