@@ -21,10 +21,12 @@ import { MatCardModule } from "@angular/material/card";
 import { MatSelectModule } from "@angular/material/select";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatDialogModule } from "@angular/material/dialog";
+import { MatListModule } from "@angular/material/list";
 
 // forms
 import { ReactiveFormsModule } from "@angular/forms";
 import { UpdateEntryComponent } from './update-entry/update-entry.component';
+import { DeleteEntryComponent } from './delete-entry/delete-entry.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { UpdateEntryComponent } from './update-entry/update-entry.component';
     FooterComponent,
     HeaderComponent,
     NewEntryComponent,
-    UpdateEntryComponent
+    UpdateEntryComponent,
+    DeleteEntryComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import { UpdateEntryComponent } from './update-entry/update-entry.component';
     MatSelectModule,
     MatToolbarModule,
     MatDialogModule,
+    MatListModule,
 
     ReactiveFormsModule
   ],
